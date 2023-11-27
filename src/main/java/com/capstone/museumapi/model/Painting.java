@@ -13,4 +13,5 @@ import lombok.Setter;
 @Setter
 public class Painting extends Art {
     private String style;
+    private Integer numberOfPaintingsByGivenArtist;
 }

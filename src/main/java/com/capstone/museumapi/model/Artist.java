@@ -1,12 +1,13 @@
 package com.capstone.museumapi.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -21,4 +22,12 @@ public class Artist {
     private String artistName;
     private String yearBorn;
     private String yearDown;
+    private Integer numberOfWorkByArtist;
+
+    @ManyToOne
+    private Museum museum;
+
+    @JsonManagedReference
+    @OneToMany(mappedBy = "art")
+    private List<Art> arts;
 }

@@ -12,4 +12,5 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Sculpture extends Art{
+    private Integer numberOfSculpturesByGivenArtist;
 }

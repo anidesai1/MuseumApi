@@ -20,4 +20,7 @@ public class Art {
     private String yearCompleted;
     private String medium;
     private String backstory;
+
+    @ManyToOne
+    private Artist artist;
 }
