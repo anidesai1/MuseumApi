@@ -38,6 +38,6 @@ public class museumController {
     @DeleteMapping("/museum/{id}")
     public ResponseEntity<String> deleteMessage(@PathVariable Integer id) {
         museumService.deleteMuseum(id);
-        return new ResponseEntity<>("Message deleted successfully", HttpStatus.OK);
+        return new ResponseEntity<>("Museum deleted successfully", HttpStatus.OK);
     }
 }

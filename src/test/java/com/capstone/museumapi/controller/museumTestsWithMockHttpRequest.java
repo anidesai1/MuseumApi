@@ -67,4 +67,18 @@ public class museumTestsWithMockHttpRequest {
         museum = mapper.readValue(contentAsString, Museum.class);
         assertEquals(1, museum.getId());
     }
+    @Test
+    public void testDeleteMessage() throws Exception{
+        Museum museum = new Museum();
+        museum.setMuseumName("New Museum");
+
+        mapper = new ObjectMapper();
+
+        resultActions = this.mockMvc.perform(MockMvcRequestBuilders.delete("/museum/1")
+                        .content(mapper.writeValueAsString(museum))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.content().string("Museum deleted successfully"));;
+    }
 }
