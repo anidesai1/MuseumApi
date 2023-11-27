@@ -46,4 +46,37 @@ public class ArtTestsWithHttpRequest {
                 () -> assertEquals("The Day Dream", art[1].getName()));
 
     }
+    @Test
+    public void testCreateArtist() throws Exception{
+        Art art= new Art();
+        art.setName("New Art");
+
+        mapper = new ObjectMapper();
+
+        resultActions = this.mockMvc.perform(MockMvcRequestBuilders.post("/art")
+                        .content(mapper.writeValueAsString(art))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isOk());
+
+        MvcResult result = resultActions.andReturn();
+        String contentAsString = result.getResponse().getContentAsString();
+
+        art = mapper.readValue(contentAsString, Art.class);
+        assertEquals(1, art.getId());
+    }
+    @Test
+    public void testDeleteArt() throws Exception{
+        Art art = new Art();
+        art.setArtistName("New Art");
+
+        mapper = new ObjectMapper();
+
+        resultActions = this.mockMvc.perform(MockMvcRequestBuilders.delete("/art/1")
+                        .content(mapper.writeValueAsString(art))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.content().string("Art deleted successfully"));;
+    }
 }
