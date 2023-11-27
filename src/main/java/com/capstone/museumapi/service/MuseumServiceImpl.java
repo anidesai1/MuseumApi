@@ -34,7 +34,7 @@ public class MuseumServiceImpl implements MuseumService{
 
     @Override
     public void deleteMuseum(Integer id) {
-
+        museumRepository.deleteById(id);
     }
 
     @Override

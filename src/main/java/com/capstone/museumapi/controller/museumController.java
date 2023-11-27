@@ -5,10 +5,9 @@ import com.capstone.museumapi.service.MuseumService;
 import io.micrometer.common.util.StringUtils;
 import jakarta.websocket.server.PathParam;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
 import java.util.List;
@@ -35,5 +34,10 @@ public class museumController {
     @PostMapping("/museum")
     public Museum createMuseum(@RequestBody Museum museum){
         return museumService.save(museum);
+    }
+    @DeleteMapping("/museum/{id}")
+    public ResponseEntity<String> deleteMessage(@PathVariable Integer id) {
+        museumService.deleteMuseum(id);
+        return new ResponseEntity<>("Message deleted successfully", HttpStatus.OK);
     }
 }
