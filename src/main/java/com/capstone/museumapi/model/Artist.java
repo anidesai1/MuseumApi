@@ -23,7 +23,7 @@ public class Artist {
     private String artistName;
     private String yearBorn;
     private String yearDown;
-    private Integer numberOfWorkByArtist;
+    private Integer numberOfWork;
 
     @ManyToOne
     @JsonBackReference

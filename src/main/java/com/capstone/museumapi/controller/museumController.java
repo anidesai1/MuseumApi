@@ -21,7 +21,7 @@ public class museumController {
         this.museumService = museumService;
     }
     @GetMapping("/museums")
-    public List<Museum> getAllMessages(@PathParam("filter") String filter){
+    public List<Museum> getAllMuseums(@PathParam("filter") String filter){
         List<Museum> museums = Collections.emptyList();
         if(StringUtils.isNotBlank(filter)) {
             museums = museumService.findByMuseumNameContains(filter);
