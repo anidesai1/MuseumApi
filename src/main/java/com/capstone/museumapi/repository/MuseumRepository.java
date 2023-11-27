@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface MuseumRepository extends CrudRepository<Museum, Integer> {
+public interface MuseumRepository extends CrudRepository <Museum, Integer>{
     List<Museum> findByMuseumNameContainingIgnoreCase(String filter);
-
 }

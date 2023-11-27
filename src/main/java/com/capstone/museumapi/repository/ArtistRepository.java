@@ -9,6 +9,6 @@ import java.util.List;
 
 @Repository
 public interface ArtistRepository extends CrudRepository<Artist, Integer> {
-   // List<Artist> findByArtistNameContains(String filter);
+    List<Artist> findByArtistNameContains(String filter);
 
 }

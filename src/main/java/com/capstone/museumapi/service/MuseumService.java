@@ -1,8 +1,6 @@
 package com.capstone.museumapi.service;
 
 import com.capstone.museumapi.model.Museum;
-import com.capstone.museumapi.repository.MuseumRepository;
-
 import java.util.List;
 
 public interface MuseumService {
