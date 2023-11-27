@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Slf4j
@@ -39,6 +40,7 @@ public class MuseumServiceImpl implements MuseumService{
 
     @Override
     public Museum findById(int id) {
-        return null;
+        Optional<Museum> museum = museumRepository.findById(id);
+        return museum.orElseGet(() -> new Museum("Default Message: Nothing found"));
     }
 }

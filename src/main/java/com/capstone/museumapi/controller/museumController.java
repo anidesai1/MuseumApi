@@ -40,4 +40,8 @@ public class museumController {
         museumService.deleteMuseum(id);
         return new ResponseEntity<>("Museum deleted successfully", HttpStatus.OK);
     }
+    @GetMapping("/museums/{id}")
+    public Museum getMuseum(@PathVariable int id) {
+        return museumService.findById(id);
+    }
 }

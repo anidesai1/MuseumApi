@@ -31,4 +31,6 @@ public class Museum {
     @OneToMany(mappedBy = "museum")
     private List<Artist> artists;
 
+    public Museum(String s) {
+    }
 }
