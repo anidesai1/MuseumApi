@@ -8,6 +8,6 @@ import java.util.List;
 
 @Repository
 public interface ArtRepository extends CrudRepository<Art, Integer> {
-   // List<Art> findArtByArtistContainingIgnoreCase(String artist);
+    List<Art> findArtByNameContainingIgnoreCase(String art);
 
 }

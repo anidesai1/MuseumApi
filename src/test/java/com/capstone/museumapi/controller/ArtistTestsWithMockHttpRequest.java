@@ -1,7 +1,6 @@
 package com.capstone.museumapi.controller;
 
 import com.capstone.museumapi.model.Artist;
-import com.capstone.museumapi.model.Museum;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
