@@ -6,8 +6,9 @@ import com.capstone.museumapi.service.ArtService;
 import io.micrometer.common.util.StringUtils;
 import jakarta.websocket.server.PathParam;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
 import java.util.List;
@@ -30,5 +31,18 @@ public class ArtController {
             art = artService.findAll();
         }
         return art;
+    }
+    @PostMapping("/art")
+    public Art createArt(@RequestBody Art art){
+        return artService.save(art);
+    }
+    @DeleteMapping("/art/{id}")
+    public ResponseEntity<String> deleteArt(@PathVariable Integer id) {
+        artService.deleteArt(id);
+        return new ResponseEntity<>("Art deleted successfully", HttpStatus.OK);
+    }
+    @GetMapping("/art/{id}")
+    public Art getArt(@PathVariable int id) {
+        return artService.findById(id);
     }
 }

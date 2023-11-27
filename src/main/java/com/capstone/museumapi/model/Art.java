@@ -25,4 +25,7 @@ public class Art {
     @ManyToOne
     @JsonBackReference
     private Artist artist;
+
+    public Art(String a) {
+    }
 }

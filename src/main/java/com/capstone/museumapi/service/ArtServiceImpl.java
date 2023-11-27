@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
 @Service
 @Slf4j
 @AllArgsConstructor
@@ -28,16 +30,17 @@ public class ArtServiceImpl implements ArtService{
 
     @Override
     public Art save(Art a) {
-        return null;
+        return artRepository.save(a);
     }
 
     @Override
     public void deleteArt(Integer id) {
-
+        artRepository.deleteById(id);
     }
 
     @Override
     public Art findById(int id) {
-        return null;
+        Optional<Art> art = artRepository.findById(id);
+        return art.orElseGet(() -> new Art("Default Message: Nothing found"));
     }
 }
