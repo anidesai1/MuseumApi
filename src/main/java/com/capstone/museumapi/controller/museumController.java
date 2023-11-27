@@ -32,7 +32,7 @@ public class museumController {
         }
         return museums;
     }
-    @PostMapping("/museums")
+    @PostMapping("/museum")
     public Museum createMuseum(@RequestBody Museum museum){
         return museumService.save(museum);
     }

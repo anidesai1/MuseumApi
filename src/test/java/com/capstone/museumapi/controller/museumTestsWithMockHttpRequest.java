@@ -48,4 +48,23 @@ public class museumTestsWithMockHttpRequest {
                 () -> assertEquals("National Portrait Gallery", museums[2].getMuseumName()));
 
     }
+    @Test
+    public void testCreateMuseum() throws Exception{
+        Museum museum = new Museum();
+        museum.setMuseumName("New Museum");
+
+        mapper = new ObjectMapper();
+
+        resultActions = this.mockMvc.perform(MockMvcRequestBuilders.post("/museum")
+                        .content(mapper.writeValueAsString(museum))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isOk());
+
+        MvcResult result = resultActions.andReturn();
+        String contentAsString = result.getResponse().getContentAsString();
+
+        museum = mapper.readValue(contentAsString, Museum.class);
+        assertEquals(1, museum.getId());
+    }
 }
