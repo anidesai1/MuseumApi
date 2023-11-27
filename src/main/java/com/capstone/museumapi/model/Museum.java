@@ -28,6 +28,6 @@ public class Museum {
     private Integer totalNumberOfArtWork;
 
     @JsonManagedReference
-    @OneToMany(mappedBy = "artist")
+    @OneToMany(mappedBy = "museum")
     private List<Artist> artists;
 }
