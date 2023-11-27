@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Slf4j
@@ -35,11 +36,12 @@ public class ArtistServiceImpl implements ArtistService{
 
     @Override
     public void deleteArtist(Integer id) {
-
+        artistRepository.deleteById(id);
     }
 
     @Override
     public Artist findById(int id) {
-        return null;
+        Optional<Artist> artist = artistRepository.findById(id);
+        return artist.orElseGet(() -> new Artist("Default Message: Nothing found"));
     }
 }

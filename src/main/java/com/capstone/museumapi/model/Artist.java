@@ -32,4 +32,7 @@ public class Artist {
     @JsonManagedReference
     @OneToMany(mappedBy = "artist")
     private List<Art> arts;
+
+    public Artist(String a) {
+    }
 }
