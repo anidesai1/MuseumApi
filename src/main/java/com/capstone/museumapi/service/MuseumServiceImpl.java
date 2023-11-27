@@ -29,7 +29,7 @@ public class MuseumServiceImpl implements MuseumService{
 
     @Override
     public Museum save(Museum m) {
-        return null;
+        return museumRepository.save(m);
     }
 
     @Override
