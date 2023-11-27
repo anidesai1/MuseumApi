@@ -22,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest
 @AutoConfigureMockMvc
 @TestPropertySource(properties = {"spring.sql.init.mode=never"})
-public class museumTestsWithMockHttpRequest {
+public class MuseumTestsWithMockHttpRequest {
     @Autowired
     MockMvc mockMvc;
     @Autowired
@@ -68,7 +68,7 @@ public class museumTestsWithMockHttpRequest {
         assertEquals(1, museum.getId());
     }
     @Test
-    public void testDeleteMessage() throws Exception{
+    public void testDeleteMuseum() throws Exception{
         Museum museum = new Museum();
         museum.setMuseumName("New Museum");
 

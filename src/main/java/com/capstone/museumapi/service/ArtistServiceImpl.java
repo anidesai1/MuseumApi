@@ -31,7 +31,7 @@ public class ArtistServiceImpl implements ArtistService{
 
     @Override
     public Artist save(Artist a) {
-        return null;
+        return artistRepository.save(a);
     }
 
     @Override
