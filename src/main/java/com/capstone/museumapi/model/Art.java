@@ -1,5 +1,6 @@
 package com.capstone.museumapi.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,5 +23,6 @@ public class Art {
     private String backstory;
 
     @ManyToOne
+    @JsonBackReference
     private Artist artist;
 }

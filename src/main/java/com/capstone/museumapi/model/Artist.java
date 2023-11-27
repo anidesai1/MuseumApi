@@ -1,5 +1,6 @@
 package com.capstone.museumapi.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -25,6 +26,7 @@ public class Artist {
     private Integer numberOfWorkByArtist;
 
     @ManyToOne
+    @JsonBackReference
     private Museum museum;
 
     @JsonManagedReference

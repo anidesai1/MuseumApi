@@ -30,4 +30,5 @@ public class Museum {
     @JsonManagedReference
     @OneToMany(mappedBy = "museum")
     private List<Artist> artists;
+
 }

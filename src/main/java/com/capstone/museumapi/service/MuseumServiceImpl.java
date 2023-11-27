@@ -24,7 +24,7 @@ public class MuseumServiceImpl implements MuseumService{
 
     @Override
     public List<Museum> findByMuseumNameContains(String filter) {
-        return null;
+        return museumRepository.findByMuseumNameContainingIgnoreCase(filter);
     }
 
     @Override
