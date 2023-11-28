@@ -25,12 +25,12 @@ insert into Art (id, name, location, artist_id, artist_name, art_type, year_comp
 insert into Art (id, name, location, artist_id, artist_name, art_type, year_completed, medium, backstory)
     values (8, 'Sleeping Hermaphrodite On Bed', 'Paris', 8, 'Gian Lorenzo Bernini', 'Sculpture', 'Unknown', 'White marble', 'A hermaphrodite, in classical reference, is a female in appearance and swagger who possesses the “bits and pieces” of a male. Ancient Mediterraneans celebrated and sculpted the hermaphrodite as if she/he were a unicorn today.');
 
-insert into Painting (id, number_of_paintings_by_given_artist, style, museum_paintings_id)
-    values (5, 5000, 'Impressionist', 4);
-insert into Painting (id, number_of_paintings_by_given_artist, style, museum_paintings_id)
-    values (6, 6000, 'Impressionist', 5);
-insert into Painting (id, number_of_paintings_by_given_artist, style, museum_paintings_id)
-    values (8, 7000, 'Abstract', 5);
+insert into Painting (id, number_of_paintings_by_given_artist, style, museum_paintings_id, artist_painting_id)
+    values (5, 5000, 'Impressionist', 4, 5);
+insert into Painting (id, number_of_paintings_by_given_artist, style, museum_paintings_id, artist_painting_id)
+    values (6, 6000, 'Impressionist', 5, 6);
+insert into Painting (id, number_of_paintings_by_given_artist, style, museum_paintings_id, artist_painting_id)
+    values (8, 7000, 'Abstract', 5, 8);
 
 insert into Sculpture (id, number_of_sculptures_by_given_artist, museum_sculptures_id, artist_sculpture_id, sculpture_name)
     values (6, 1, 8, 6, 'Winged Victory Of Samothrace');

@@ -39,6 +39,10 @@ public class Artist {
     @OneToMany(mappedBy = "artistSculpture")
     private List<Sculpture> sculptures;
 
+    @JsonManagedReference(value = "painting-managed")
+    @OneToMany(mappedBy = "artistPainting")
+    private List<Painting> paintings;
+
     public Artist(String a) {
     }
 

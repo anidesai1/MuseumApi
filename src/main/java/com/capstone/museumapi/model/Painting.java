@@ -20,4 +20,8 @@ public class Painting extends Art {
     @ManyToOne
     @JsonBackReference(value = "paintings-managed")
     private Museum museumPaintings;
+
+    @ManyToOne
+    @JsonBackReference(value = "painting-managed")
+    private Artist artistPainting;
 }
