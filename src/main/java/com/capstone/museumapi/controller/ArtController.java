@@ -47,7 +47,6 @@ public class ArtController {
     }
     @GetMapping("/art/{id}")
     public Art getArt(@PathVariable Integer id) {
-        log.debug("In the getArt method: " + id);
         return artService.findById(id);
     }
     @GetMapping("/paintingsByArtist/{artistId}")
