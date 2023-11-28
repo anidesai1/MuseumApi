@@ -3,6 +3,7 @@ package com.capstone.museumapi.service;
 import com.capstone.museumapi.model.Art;
 import com.capstone.museumapi.model.Artist;
 import com.capstone.museumapi.model.Painting;
+import com.capstone.museumapi.model.Sculpture;
 import com.capstone.museumapi.repository.ArtRepository;
 import com.capstone.museumapi.repository.ArtistRepository;
 import lombok.AllArgsConstructor;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -49,5 +51,23 @@ public class ArtServiceImpl implements ArtService{
     @Override
     public List<Art> findAllPaintingsByArtist(Artist artist) {
         return artRepository.findArtByArtist(artist);
+    }
+    @Override
+    public List<Painting> getAllPaintings() {
+        List<Art> allArtworks = (List<Art>) artRepository.findAll();
+
+        return allArtworks.stream()
+                .filter(artwork -> artwork instanceof Painting)
+                .map(artwork -> (Painting) artwork)
+                .collect(Collectors.toList());
+    }
+    @Override
+    public List<Sculpture> getAllSculptures() {
+        List<Art> allArtworks = (List<Art>) artRepository.findAll();
+
+        return allArtworks.stream()
+                .filter(artwork -> artwork instanceof Sculpture)
+                .map(artwork -> (Sculpture) artwork)
+                .collect(Collectors.toList());
     }
 }
