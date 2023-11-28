@@ -1,11 +1,8 @@
 package com.capstone.museumapi.controller;
 
 import com.capstone.museumapi.model.Art;
-import com.capstone.museumapi.model.Artist;
 import com.capstone.museumapi.repository.ArtRepository;
-import com.capstone.museumapi.repository.ArtistRepository;
 import com.capstone.museumapi.service.ArtServiceImpl;
-import com.capstone.museumapi.service.ArtistServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -24,11 +21,8 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.eq;

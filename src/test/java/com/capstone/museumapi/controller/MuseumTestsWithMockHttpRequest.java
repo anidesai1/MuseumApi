@@ -1,11 +1,7 @@
 package com.capstone.museumapi.controller;
 
-import com.capstone.museumapi.model.Artist;
 import com.capstone.museumapi.model.Museum;
-import com.capstone.museumapi.repository.ArtistRepository;
 import com.capstone.museumapi.repository.MuseumRepository;
-import com.capstone.museumapi.service.ArtistServiceImpl;
-import com.capstone.museumapi.service.MuseumService;
 import com.capstone.museumapi.service.MuseumServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;

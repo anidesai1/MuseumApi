@@ -1,15 +1,28 @@
+--Address
+insert into Museum_Address(id, line_one, line_two, state, post_code, country)
+values (1, 'Cromwell Rd', '', 'London', 'SW7 2RL', 'UK');
+
+insert into Museum_Address(id, line_one, line_two, state, post_code, country)
+values (2, 'Trafalgar Square', '', 'London', 'WC2N 5DN', 'UK');
+
+insert into Museum_Address(id, line_one, line_two, state, post_code, country)
+values (3, 'St. Martin''s Pl', '', 'London', 'WC2H 0HE', 'UK');
+
+insert into Museum_Address(id, line_one, line_two, state, post_code, country)
+values (4, '', '', 'Paris', '75001', 'France');
+
 -- Museums
-insert into Museum (id, museum_name, location, curator, total_number_of_art_work)
-values (4, 'Victoria and Albert Museum', 'London', 'Joanna Norman', 70000);
+insert into Museum (id, museum_name, location, curator, total_number_of_art_work, address_id)
+values (4, 'Victoria and Albert Museum', 'London', 'Joanna Norman', 70000, 1);
 
-insert into Museum (id, museum_name, location, curator, total_number_of_art_work)
-values (5, 'The National Gallery', 'London', 'Gabriele Finaldi', 80000);
+insert into Museum (id, museum_name, location, curator, total_number_of_art_work, address_id)
+values (5, 'The National Gallery', 'London', 'Gabriele Finaldi', 80000, 2);
 
-insert into Museum (id, museum_name, location, curator, total_number_of_art_work)
-values (6, 'National Portrait Gallery', 'London', 'Bree Pickering', 50000);
+insert into Museum (id, museum_name, location, curator, total_number_of_art_work, address_id)
+values (6, 'National Portrait Gallery', 'London', 'Bree Pickering', 50000, 3);
 
-insert into Museum (id, museum_name, location, curator, total_number_of_art_work)
-values (8, 'Louvre Museum', 'Paris', 'Jean-Luc Martinez', 40000);
+insert into Museum (id, museum_name, location, curator, total_number_of_art_work, address_id)
+values (8, 'Louvre Museum', 'Paris', 'Jean-Luc Martinez', 40000, 4);
 
 -- Artists
 insert into Artist (id, artist_name, year_born, year_down, number_of_work, museum_id)
