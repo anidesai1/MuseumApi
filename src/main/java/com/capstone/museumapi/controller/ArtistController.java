@@ -43,8 +43,4 @@ public class ArtistController {
     public Artist getArtist(@PathVariable int id) {
         return artistService.findById(id);
     }
-    @GetMapping("/art/{numberOfWork}")
-    public Artist getNumberOfWork(@PathVariable int numberOfWork) {
-        return artistService.findByNumberOfWork(numberOfWork);
-    }
 }

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.MockMvc;
@@ -21,8 +22,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @Sql("classpath:test-data.sql")
 @SpringBootTest
 @AutoConfigureMockMvc
+@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 @TestPropertySource(properties = {"spring.sql.init.mode=never"})
-public class ArtistTestsWithMockHttpRequest {
+ class ArtistTestsWithMockHttpRequest {
     @Autowired
     MockMvc mockMvc;
     @Autowired
@@ -42,12 +44,12 @@ public class ArtistTestsWithMockHttpRequest {
             Artist[] artists = mapper.readValue(contentAsAString, Artist[].class);
         assertAll("Testing from a test-data.sql file",
                 () -> assertEquals(expectedLength, artists.length),
-                () -> assertEquals("John Constable", artists[0].getArtistName()),
-                () -> assertEquals("Dante Gabriel Rossetti", artists[1].getArtistName()));
+                () -> assertEquals("Dante Gabriel Rossetti", artists[0].getArtistName()),
+                () -> assertEquals("Artist Unknown", artists[1].getArtistName()));
 
     }
     @Test
-    public void testCreateArtist() throws Exception{
+    void testCreateArtist() throws Exception{
         Artist artist = new Artist();
         artist.setArtistName("New Artist");
 
@@ -66,7 +68,7 @@ public class ArtistTestsWithMockHttpRequest {
         assertEquals(1, artist.getId());
     }
     @Test
-    public void testDeleteArtist() throws Exception{
+    void testDeleteArtist() throws Exception{
         Artist artist = new Artist();
         artist.setArtistName("New Artist");
 

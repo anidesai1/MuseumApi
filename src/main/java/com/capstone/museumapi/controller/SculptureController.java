@@ -1,6 +1,5 @@
 package com.capstone.museumapi.controller;
 
-import com.capstone.museumapi.model.Painting;
 import com.capstone.museumapi.model.Sculpture;
 import com.capstone.museumapi.service.ArtService;
 import org.springframework.beans.factory.annotation.Autowired;

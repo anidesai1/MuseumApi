@@ -57,8 +57,8 @@ public class ArtServiceImpl implements ArtService{
         List<Art> allArtworks = (List<Art>) artRepository.findAll();
 
         return allArtworks.stream()
-                .filter(artwork -> artwork instanceof Painting)
-                .map(artwork -> (Painting) artwork)
+                .filter(Painting.class::isInstance)
+                .map(Painting.class::cast)
                 .collect(Collectors.toList());
     }
     @Override
@@ -66,8 +66,8 @@ public class ArtServiceImpl implements ArtService{
         List<Art> allArtworks = (List<Art>) artRepository.findAll();
 
         return allArtworks.stream()
-                .filter(artwork -> artwork instanceof Sculpture)
-                .map(artwork -> (Sculpture) artwork)
+                .filter(Sculpture.class::isInstance)
+                .map(Sculpture.class::cast)
                 .collect(Collectors.toList());
     }
 }

@@ -6,7 +6,6 @@ import com.capstone.museumapi.service.ArtService;
 import com.capstone.museumapi.service.ArtistService;
 import io.micrometer.common.util.StringUtils;
 import jakarta.websocket.server.PathParam;
-import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -47,7 +46,8 @@ public class ArtController {
         return new ResponseEntity<>("Art deleted successfully", HttpStatus.OK);
     }
     @GetMapping("/art/{id}")
-    public Art getArt(@PathVariable int id) {
+    public Art getArt(@PathVariable Integer id) {
+        log.debug("In the getArt method: " + id);
         return artService.findById(id);
     }
     @GetMapping("/paintingsByArtist/{artistId}")

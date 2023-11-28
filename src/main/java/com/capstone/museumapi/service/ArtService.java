@@ -6,7 +6,6 @@ import com.capstone.museumapi.model.Painting;
 import com.capstone.museumapi.model.Sculpture;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface ArtService {
     List<Art> findAll();

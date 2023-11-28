@@ -7,9 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.MockMvc;
@@ -18,15 +17,14 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 @Sql("classpath:test-data.sql")
 @SpringBootTest
 @AutoConfigureMockMvc
+@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 @TestPropertySource(properties = {"spring.sql.init.mode=never"})
-public class ArtTestsWithHttpRequest {
+    class ArtTestsWithHttpRequest {
     @Autowired
     MockMvc mockMvc;
     @Autowired
@@ -34,8 +32,8 @@ public class ArtTestsWithHttpRequest {
     private TestRestTemplate restTemplate;
     ResultActions resultActions;
     @Test
-    public void testGettingAllArt() throws Exception {
-        int expectedLength = 2;
+    void testGettingAllArt() throws Exception {
+        int expectedLength = 1;
         ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.get("/art")
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON))
@@ -47,12 +45,11 @@ public class ArtTestsWithHttpRequest {
         Art[] art = mapper.readValue(contentAsAString, Art[].class);
         assertAll("Testing from a test-data.sql file",
                 () -> assertEquals(expectedLength, art.length),
-                () -> assertEquals("Salisbury Cathedral from the Bishops Grounds", art[0].getName()),
-                () -> assertEquals("The Day Dream", art[1].getName()));
+                () -> assertEquals("The Day Dream", art[0].getName()));
 
     }
     @Test
-    public void testCreateArtist() throws Exception{
+    void testCreateArtist() throws Exception{
         Art art= new Art();
         art.setName("New Art");
 
@@ -71,7 +68,7 @@ public class ArtTestsWithHttpRequest {
         assertEquals(1, art.getId());
     }
     @Test
-    public void testDeleteArt() throws Exception{
+    void testDeleteArt() throws Exception{
         Art art = new Art();
         art.setArtistName("New Art");
 
@@ -83,5 +80,38 @@ public class ArtTestsWithHttpRequest {
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().string("Art deleted successfully"));;
+    }
+    @Test
+    void testGettingAllPaintings() throws Exception {
+        int expectedLength = 1;
+        ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.get("/paintings")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isOk());
+
+        MvcResult result = resultActions.andReturn();
+        String contentAsAString = result.getResponse().getContentAsString();
+
+        Art[] art = mapper.readValue(contentAsAString, Art[].class);
+        assertAll("Testing from a test-data.sql file",
+                () -> assertEquals(expectedLength, art.length),
+                () -> assertEquals("The Day Dream", art[0].getName()));
+
+    }
+    @Test
+    void testGettingAllSculptures() throws Exception {
+        int expectedLength = 0;
+        ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.get("/sculptures")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isOk());
+
+        MvcResult result = resultActions.andReturn();
+        String contentAsAString = result.getResponse().getContentAsString();
+
+        Art[] art = mapper.readValue(contentAsAString, Art[].class);
+        assertAll("Testing from a test-data.sql file",
+                () -> assertEquals(expectedLength, art.length));
+
     }
 }

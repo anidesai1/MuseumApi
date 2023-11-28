@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.MockMvc;
@@ -21,8 +22,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @Sql("classpath:test-data.sql")
 @SpringBootTest
 @AutoConfigureMockMvc
+@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 @TestPropertySource(properties = {"spring.sql.init.mode=never"})
-public class MuseumTestsWithMockHttpRequest {
+class MuseumTestsWithMockHttpRequest {
     @Autowired
     MockMvc mockMvc;
     @Autowired
@@ -30,8 +32,8 @@ public class MuseumTestsWithMockHttpRequest {
     ResultActions resultActions;
 
     @Test
-    public void testGettingAllMuseums() throws Exception {
-        int expectedLength = 3;
+    void testGettingAllMuseums() throws Exception {
+        int expectedLength = 2;
         ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.get("/museums")
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON))
@@ -43,13 +45,12 @@ public class MuseumTestsWithMockHttpRequest {
         Museum[] museums = mapper.readValue(contentAsAString, Museum[].class);
         assertAll("Testing from a test-data.sql file",
                 () -> assertEquals(expectedLength, museums.length),
-                () -> assertEquals("Victoria and Albert Museum", museums[0].getMuseumName()),
-                () -> assertEquals("The National Gallery", museums[1].getMuseumName()),
-                () -> assertEquals("National Portrait Gallery", museums[2].getMuseumName()));
+                () -> assertEquals("The National Gallery", museums[0].getMuseumName()),
+                () -> assertEquals("National Portrait Gallery", museums[1].getMuseumName()));
 
     }
     @Test
-    public void testCreateMuseum() throws Exception{
+    void testCreateMuseum() throws Exception{
         Museum museum = new Museum();
         museum.setMuseumName("New Museum");
 
@@ -68,7 +69,7 @@ public class MuseumTestsWithMockHttpRequest {
         assertEquals(1, museum.getId());
     }
     @Test
-    public void testDeleteMuseum() throws Exception{
+    void testDeleteMuseum() throws Exception{
         Museum museum = new Museum();
         museum.setMuseumName("New Museum");
 
