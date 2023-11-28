@@ -32,7 +32,7 @@ insert into Painting (id, number_of_paintings_by_given_artist, style, museum_pai
 insert into Painting (id, number_of_paintings_by_given_artist, style, museum_paintings_id)
     values (8, 7000, 'Abstract', 5);
 
-insert into Sculpture (id, number_of_sculptures_by_given_artist, museum_sculptures_id)
-    values (6, 1000, 8);
-insert into Sculpture (id, number_of_sculptures_by_given_artist, museum_sculptures_id)
-    values (8, 2000, 5);
+insert into Sculpture (id, number_of_sculptures_by_given_artist, museum_sculptures_id, artist_sculpture_id, sculpture_name)
+    values (6, 1, 8, 6, 'Winged Victory Of Samothrace');
+insert into Sculpture (id, number_of_sculptures_by_given_artist, museum_sculptures_id, artist_sculpture_id, sculpture_name)
+    values (8, 3, 5, 8, 'Sleeping Hermaphrodite On Bed, David, Medusa');
