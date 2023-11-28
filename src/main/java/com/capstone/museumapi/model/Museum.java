@@ -7,7 +7,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -38,6 +40,9 @@ public class Museum {
     @JsonManagedReference(value = "sculptures-managed")
     @OneToMany(mappedBy = "museumSculptures")
     private List<Sculpture> sculptures;
+
+    @ManyToMany(mappedBy = "museums")
+    private Set<Exhibition> exhibitions = new HashSet<>();
 
     public Museum(String s) {
     }

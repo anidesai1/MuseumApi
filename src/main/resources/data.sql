@@ -66,3 +66,29 @@ values (6, 1, 8, 6, 'Winged Victory Of Samothrace');
 
 insert into Sculpture (id, number_of_sculptures_by_given_artist, museum_sculptures_id, artist_sculpture_id, sculpture_name)
 values (8, 3, 5, 8, 'Sleeping Hermaphrodite On Bed, David, Medusa');
+
+--Exhibitions
+insert into Exhibition (exhibition_type, exhibition_name, start_date, end_date)
+values ('Painting', 'Abstract world of painting', '19/12/23', '23/02/24');
+
+insert into Exhibition (exhibition_type, exhibition_name, start_date, end_date)
+values ('Sculpture', 'Abstract world of sculptures', '23/12/23', '23/03/24');
+
+insert into Exhibition (exhibition_type, exhibition_name, start_date, end_date)
+values ('Nature', 'Abstract world of nature', '2/12/23', '01/01/24');
+
+--Exhibition x Museum
+insert into museum_exhibition (museum_id, exhibition_id)
+values (4, 1);
+
+insert into museum_exhibition (museum_id, exhibition_id)
+values (4, 2);
+
+insert into museum_exhibition (museum_id, exhibition_id)
+values (5, 1);
+
+insert into museum_exhibition (museum_id, exhibition_id)
+values (5, 3);
+
+insert into museum_exhibition (museum_id, exhibition_id)
+values (6, 3);
