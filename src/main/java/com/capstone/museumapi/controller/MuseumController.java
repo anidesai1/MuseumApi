@@ -14,10 +14,10 @@ import java.util.List;
 
 @Slf4j
 @RestController
-public class museumController {
+public class MuseumController {
     private MuseumService museumService;
 
-    public museumController(MuseumService museumService) {
+    public MuseumController(MuseumService museumService) {
         this.museumService = museumService;
     }
     @GetMapping("/museums")

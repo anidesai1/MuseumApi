@@ -1,7 +1,6 @@
 package com.capstone.museumapi.controller;
 
 import com.capstone.museumapi.model.Artist;
-import com.capstone.museumapi.model.Museum;
 import com.capstone.museumapi.service.ArtistService;
 import io.micrometer.common.util.StringUtils;
 import jakarta.websocket.server.PathParam;
@@ -43,5 +42,9 @@ public class ArtistController {
     @GetMapping("/artist/{id}")
     public Artist getArtist(@PathVariable int id) {
         return artistService.findById(id);
+    }
+    @GetMapping("/art/{numberOfWork}")
+    public Artist getNumberOfWork(@PathVariable int numberOfWork) {
+        return artistService.findByNumberOfWork(numberOfWork);
     }
 }

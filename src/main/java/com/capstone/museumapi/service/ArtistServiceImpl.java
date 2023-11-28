@@ -1,7 +1,6 @@
 package com.capstone.museumapi.service;
 
 import com.capstone.museumapi.model.Artist;
-import com.capstone.museumapi.model.Museum;
 import com.capstone.museumapi.repository.ArtistRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -28,7 +27,6 @@ public class ArtistServiceImpl implements ArtistService{
     public List<Artist> findByArtistNameContains(String filter) {
         return artistRepository.findByArtistNameContains(filter);
     }
-
     @Override
     public Artist save(Artist a) {
         return artistRepository.save(a);
@@ -42,6 +40,15 @@ public class ArtistServiceImpl implements ArtistService{
     @Override
     public Artist findById(int id) {
         Optional<Artist> artist = artistRepository.findById(id);
+        return artist.orElseGet(() -> new Artist("Default Message: Nothing found"));
+    }
+    @Override
+    public Optional<Artist> findArtistById(int id) {
+        return artistRepository.findById(id);
+    }
+    @Override
+    public Artist findByNumberOfWork(int n) {
+        Optional<Artist> artist = artistRepository.findArtistByNumberOfWork(n);
         return artist.orElseGet(() -> new Artist("Default Message: Nothing found"));
     }
 }

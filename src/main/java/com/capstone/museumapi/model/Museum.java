@@ -27,9 +27,17 @@ public class Museum {
     private String curator;
     private Integer totalNumberOfArtWork;
 
-    @JsonManagedReference
+    @JsonManagedReference(value = "artists-managed")
     @OneToMany(mappedBy = "museum")
     private List<Artist> artists;
+
+    @JsonManagedReference(value = "paintings-managed")
+    @OneToMany(mappedBy = "museumPaintings")
+    private List<Painting> paintings;
+
+    @JsonManagedReference(value = "sculptures-managed")
+    @OneToMany(mappedBy = "museumSculptures")
+    private List<Sculpture> sculptures;
 
     public Museum(String s) {
     }

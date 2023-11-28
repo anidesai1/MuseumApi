@@ -2,7 +2,9 @@ package com.capstone.museumapi.service;
 
 import com.capstone.museumapi.model.Art;
 import com.capstone.museumapi.model.Artist;
+import com.capstone.museumapi.model.Painting;
 import com.capstone.museumapi.repository.ArtRepository;
+import com.capstone.museumapi.repository.ArtistRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -16,6 +18,7 @@ import java.util.Optional;
 @AllArgsConstructor
 public class ArtServiceImpl implements ArtService{
     ArtRepository artRepository;
+    ArtistRepository artistRepository;
     @Override
     public List<Art> findAll() {
         List<Art> art = new ArrayList<>();
@@ -42,5 +45,9 @@ public class ArtServiceImpl implements ArtService{
     public Art findById(int id) {
         Optional<Art> art = artRepository.findById(id);
         return art.orElseGet(() -> new Art("Default Message: Nothing found"));
+    }
+    @Override
+    public List<Art> findAllPaintingsByArtist(Artist artist) {
+        return artRepository.findArtByArtist(artist);
     }
 }

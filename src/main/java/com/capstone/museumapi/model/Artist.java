@@ -24,15 +24,19 @@ public class Artist {
     private String yearBorn;
     private String yearDown;
     private Integer numberOfWork;
+    @Transient
+    private int totalPaintings;
 
     @ManyToOne
-    @JsonBackReference
+    @JsonBackReference(value = "artists-managed")
     private Museum museum;
 
-    @JsonManagedReference
+    @JsonManagedReference(value = "arts-managed")
     @OneToMany(mappedBy = "artist")
     private List<Art> arts;
 
     public Artist(String a) {
     }
+
+
 }

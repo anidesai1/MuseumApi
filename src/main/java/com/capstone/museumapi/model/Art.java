@@ -21,9 +21,10 @@ public class Art {
     private String yearCompleted;
     private String medium;
     private String backstory;
+    private String location;
 
     @ManyToOne
-    @JsonBackReference
+    @JsonBackReference(value = "arts-managed")
     private Artist artist;
 
     public Art(String a) {
