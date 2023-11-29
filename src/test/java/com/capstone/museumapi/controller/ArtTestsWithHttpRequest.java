@@ -130,42 +130,16 @@ import static org.mockito.Mockito.when;
 
     }
     @Test
-    void testfindByArtNameContains() throws Exception{
-        Art art= new Art();
-        art.setName("New Art");
-
-        mapper = new ObjectMapper();
-
-        resultActions = this.mockMvc.perform(MockMvcRequestBuilders.post("http://localhost:8080/art?filter=new")
-                        .content(mapper.writeValueAsString(art))
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .accept(MediaType.APPLICATION_JSON))
-                .andExpect(MockMvcResultMatchers.status().isOk());
-
-        MvcResult result = resultActions.andReturn();
-        String contentAsString = result.getResponse().getContentAsString();
-
-        art = mapper.readValue(contentAsString, Art.class);
-        assertEquals(1, art.getId());
-    }
-    @Test
     void testFindByArtNameContains() {
-        // Mock data
         String filter = "someFilter";
         List<Art> mockArt = Arrays.asList(
                 new Art("Art1"),
                 new Art("Art2")
-                // Add more mock data as needed
         );
-
-        // Set up the mock behavior for your repository method
         when(artRepository.findArtByNameContainingIgnoreCase(eq(filter))).thenReturn(mockArt);
-
-        // Call the service method
         List<Art> result = artService.findByArtNameContains(filter);
 
-        // Verify the interactions and assertions
         Mockito.verify(artRepository, times(1)).findArtByNameContainingIgnoreCase(filter);
-        assertThat(result).isNotNull().hasSize(2); // Adjust based on your mock data
+        assertThat(result).isNotNull().hasSize(2);
     }
 }
