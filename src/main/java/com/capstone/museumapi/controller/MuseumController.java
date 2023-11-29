@@ -29,15 +29,19 @@ public class MuseumController {
         List<Museum> museums;
         if(StringUtils.isNotBlank(filter)) {
             museums = museumService.findByMuseumNameContains(filter);
-
         }
         else {
             museums = museumService.findAll();
         }
-        //museums.forEach(MuseumDtoConverter::convert);
         for (Museum museum: museums) {
             museumDtos.add(MuseumDtoConverter.convert(museum));
         }
+        return museumDtos;
+    }
+    @GetMapping("/museums/summary")
+    public List<MuseumDto> getAllMuseumsDto(@PathParam("filter") String filter){
+        List<MuseumDto> museumDtos = new ArrayList<>();
+        museumDtos = museumService.findAllMuseumDto();
         return museumDtos;
     }
     @PostMapping("/museum")
@@ -50,7 +54,10 @@ public class MuseumController {
         return new ResponseEntity<>("Museum deleted successfully", HttpStatus.OK);
     }
     @GetMapping("/museums/{id}")
-    public Museum getMuseum(@PathVariable int id) {
-        return museumService.findById(id);
+    public List<MuseumDto> getMuseumById(@PathVariable int id) {
+        List<MuseumDto> museumDtos = new ArrayList<>();
+        Museum museum = museumService.findById(id);
+        museumDtos.add(MuseumDtoConverter.convert(museum));
+        return museumDtos;
     }
 }

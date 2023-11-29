@@ -1,5 +1,6 @@
 package com.capstone.museumapi.service;
 
+import com.capstone.museumapi.dto.MuseumDto;
 import com.capstone.museumapi.model.Museum;
 import java.util.List;
 
@@ -9,4 +10,5 @@ public interface MuseumService {
     Museum save(Museum m);
     void deleteMuseum(Integer id);
     Museum findById(int id);
+    List<MuseumDto> findAllMuseumDto();
 }

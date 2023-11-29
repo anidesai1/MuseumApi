@@ -49,6 +49,4 @@ public class Artist {
 
     public Artist(String a) {
     }
-
-
 }
