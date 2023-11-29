@@ -31,6 +31,7 @@ public class Museum {
 
     @JsonManagedReference(value = "artists-managed")
     @OneToMany(mappedBy = "museum")
+    //@JoinColumn(name = "museum_id")
     private List<Artist> artists;
 
     @JsonManagedReference(value = "paintings-managed")

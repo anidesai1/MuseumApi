@@ -1,6 +1,7 @@
 package com.capstone.museumapi.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -13,6 +14,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
 @Getter
 @Setter
 @Entity
@@ -28,7 +30,8 @@ public class Artist {
     @Transient
     private int totalPaintings;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
+    //@JoinColumn(name = "museum_id")
     @JsonBackReference(value = "artists-managed")
     private Museum museum;
 
