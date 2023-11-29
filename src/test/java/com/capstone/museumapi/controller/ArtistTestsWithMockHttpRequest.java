@@ -1,8 +1,11 @@
 package com.capstone.museumapi.controller;
 
+import com.capstone.museumapi.dto.ArtistPaintingsDto;
 import com.capstone.museumapi.model.Artist;
+import com.capstone.museumapi.model.Painting;
 import com.capstone.museumapi.repository.ArtistRepository;
 import com.capstone.museumapi.service.ArtistServiceImpl;
+import com.capstone.museumapi.util.ArtistDtoConverter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -24,8 +27,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -46,6 +48,9 @@ import static org.mockito.Mockito.when;
 
     @InjectMocks
     private ArtistServiceImpl artistService;
+    @InjectMocks
+    private ArtistController artistController;
+    private PaintingController paintingController;
     ResultActions resultActions;
 
     @Test
@@ -66,7 +71,6 @@ import static org.mockito.Mockito.when;
                 () -> assertEquals("Artist Unknown", artists[1].getArtistName()));
 
     }
-
     @Test
     void testCreateArtist() throws Exception {
         Artist artist = new Artist();
@@ -102,7 +106,6 @@ import static org.mockito.Mockito.when;
                 .andExpect(MockMvcResultMatchers.content().string("Artist deleted successfully"));
         ;
     }
-
     @Test
     void testFindByArtistNameContains() {
         // Mock data
@@ -110,17 +113,28 @@ import static org.mockito.Mockito.when;
         List<Artist> mockArtists = Arrays.asList(
                 new Artist("Artist1"),
                 new Artist("Artist2")
-                // Add more mock data as needed
         );
 
-        // Set up the mock behavior for your repository method
         when(artistRepository.findByArtistNameContains(eq(filter))).thenReturn(mockArtists);
-
-        // Call the service method
         List<Artist> result = artistService.findByArtistNameContains(filter);
 
-        // Verify the interactions and assertions
         Mockito.verify(artistRepository, times(1)).findByArtistNameContains(filter);
         assertThat(result).isNotNull().hasSize(2); // Adjust based on your mock data
+    }
+    @Test
+    void testFindArtistById() throws Exception {
+        Artist artist = new Artist();
+        artist.setArtistName("New Artist");
+        artist.setId(1);
+
+        mapper = new ObjectMapper();
+
+        resultActions = this.mockMvc.perform(MockMvcRequestBuilders.get("/artist/1")
+                        .content(mapper.writeValueAsString(artist))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isOk());
+        assertAll("Testing from a test-data.sql file",
+                () -> assertEquals("New Artist", artist.getArtistName()));
     }
 }

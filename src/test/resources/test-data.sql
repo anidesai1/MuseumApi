@@ -1,3 +1,7 @@
+--Address
+insert into Museum_Address(id, line_one, line_two, state, post_code, country)
+values (1, 'Cromwell Rd', '', 'London', 'SW7 2RL', 'UK');
+
 -- Museums
 insert into Museum (id, museum_name, location, curator, total_number_of_art_work)
 values (9, 'The National Gallery', 'London', 'Gabriele Finaldi', 80000);

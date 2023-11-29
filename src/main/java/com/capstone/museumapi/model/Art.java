@@ -15,7 +15,7 @@ import lombok.Setter;
 public class Art {
     @Id
     @GeneratedValue
-    private Long id;
+    private Integer id;
     private String name;
     private String artistName;
     private String yearCompleted;

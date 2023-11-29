@@ -1,5 +1,6 @@
 package com.capstone.museumapi.controller;
 
+import com.capstone.museumapi.model.Art;
 import com.capstone.museumapi.model.Museum;
 import com.capstone.museumapi.repository.MuseumRepository;
 import com.capstone.museumapi.service.MuseumServiceImpl;
@@ -118,5 +119,21 @@ class MuseumTestsWithMockHttpRequest {
         // Verify the interactions and assertions
         Mockito.verify(museumRepository, times(1)).findByMuseumNameContainingIgnoreCase(filter);
         assertThat(result).isNotNull().hasSize(2); // Adjust based on your mock data
+    }
+    @Test
+    void testFindMuseumById() throws Exception {
+        Museum museum = new Museum();
+        museum.setMuseumName("New Museum");
+        museum.setId(1);
+
+        mapper = new ObjectMapper();
+
+        resultActions = this.mockMvc.perform(MockMvcRequestBuilders.get("/museums/1")
+                        .content(mapper.writeValueAsString(museum))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isOk());
+        assertAll("Testing from a test-data.sql file",
+                () -> assertEquals("New Museum", museum.getMuseumName()));
     }
 }

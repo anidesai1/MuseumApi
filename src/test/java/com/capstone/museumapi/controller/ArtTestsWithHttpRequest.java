@@ -1,6 +1,7 @@
 package com.capstone.museumapi.controller;
 
 import com.capstone.museumapi.model.Art;
+import com.capstone.museumapi.model.Artist;
 import com.capstone.museumapi.repository.ArtRepository;
 import com.capstone.museumapi.service.ArtServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -141,5 +142,22 @@ import static org.mockito.Mockito.when;
 
         Mockito.verify(artRepository, times(1)).findArtByNameContainingIgnoreCase(filter);
         assertThat(result).isNotNull().hasSize(2);
+    }
+
+    @Test
+    void testFindArtById() throws Exception {
+        Art art = new Art();
+        art.setArtistName("New Artist");
+        art.setId(1);
+
+        mapper = new ObjectMapper();
+
+        resultActions = this.mockMvc.perform(MockMvcRequestBuilders.get("/art/1")
+                        .content(mapper.writeValueAsString(art))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isOk());
+        assertAll("Testing from a test-data.sql file",
+                () -> assertEquals("New Artist", art.getArtistName()));
     }
 }

@@ -61,4 +61,16 @@ public class MuseumController {
         museumDtos.add(MuseumDtoConverter.convert(museum));
         return museumDtos;
     }
+    @GetMapping("/museum/address/{id}")
+    public ResponseEntity<MuseumDto> getMuseumAddressById(@PathVariable Integer id) {
+        Museum museum = museumService.findById(id);
+
+        if (museum == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        MuseumDto museumDto = MuseumDtoConverter.convert(museum);
+
+        return ResponseEntity.ok(museumDto);
+    }
 }
