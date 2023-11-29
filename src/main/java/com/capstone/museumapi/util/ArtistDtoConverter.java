@@ -5,18 +5,13 @@ import com.capstone.museumapi.model.Artist;
 
 public class ArtistDtoConverter {
     public static ArtistDto convert(Artist artist) {
-        return new ArtistDto(MuseumDtoConverter.convertWithoutArtists(artist.getMuseum()),
+        return new ArtistDto(
                 artist.getId(),
-                artist.getArtistName(),
-                artist.getYearBorn(),
-                artist.getYearDown(),
-                artist.getTotalPaintings());
+                artist.getArtistName());
     }
-    public static ArtistDto convertWithoutMuseum(Artist artist) {
+    public static ArtistDto convertWithPaintings(Artist artist) {
         return new ArtistDto(artist.getId(),
                 artist.getArtistName(),
-                artist.getYearBorn(),
-                artist.getYearDown(),
-                artist.getTotalPaintings());
+                artist.getPaintings());
     }
 }
