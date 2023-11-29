@@ -1,6 +1,7 @@
 package com.capstone.museumapi.controller;
 
 import com.capstone.museumapi.dto.MuseumDto;
+import com.capstone.museumapi.model.Exhibition;
 import com.capstone.museumapi.model.Museum;
 import com.capstone.museumapi.service.MuseumService;
 import com.capstone.museumapi.util.MuseumDtoConverter;

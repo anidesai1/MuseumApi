@@ -1,6 +1,7 @@
 package com.capstone.museumapi.service;
 
 import com.capstone.museumapi.dto.MuseumDto;
+import com.capstone.museumapi.model.Exhibition;
 import com.capstone.museumapi.model.Museum;
 import com.capstone.museumapi.repository.MuseumRepository;
 import lombok.AllArgsConstructor;
@@ -49,4 +50,5 @@ public class MuseumServiceImpl implements MuseumService{
     public List<MuseumDto> findAllMuseumDto() {
         return museumRepository.findAllMuseumDto();
     }
+
 }

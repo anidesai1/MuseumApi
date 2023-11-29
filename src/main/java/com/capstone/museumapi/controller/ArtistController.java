@@ -1,9 +1,11 @@
 package com.capstone.museumapi.controller;
 
-import com.capstone.museumapi.dto.ArtistDto;
+import com.capstone.museumapi.dto.ArtistPaintingsDto;
+import com.capstone.museumapi.dto.ArtistSculptureDto;
 import com.capstone.museumapi.model.Artist;
 import com.capstone.museumapi.service.ArtistService;
 import com.capstone.museumapi.util.ArtistDtoConverter;
+import com.capstone.museumapi.util.ArtistSculpturesDtoConverter;
 import io.micrometer.common.util.StringUtils;
 import jakarta.websocket.server.PathParam;
 import lombok.extern.slf4j.Slf4j;
@@ -46,10 +48,17 @@ public class ArtistController {
         return artistService.findById(id);
     }
     @GetMapping("/artists/paintings/{id}")
-    public List<ArtistDto> getAllPaintings(@PathVariable int id){
-        List<ArtistDto> artistDtos = Collections.emptyList();
+    public List<ArtistPaintingsDto> getPaintings(@PathVariable int id){
+        List<ArtistPaintingsDto> artistDtos = new java.util.ArrayList<>(Collections.emptyList());
         Artist artists = artistService.findById(id);
         artistDtos.add(ArtistDtoConverter.convertWithPaintings(artists));
+        return artistDtos;
+    }
+    @GetMapping("/artists/sculptures/{id}")
+    public List<ArtistSculptureDto> getSculptures(@PathVariable int id){
+        List<ArtistSculptureDto> artistDtos = new java.util.ArrayList<>(Collections.emptyList());
+        Artist artists = artistService.findById(id);
+        artistDtos.add(ArtistSculpturesDtoConverter.convertWithSculptures(artists));
         return artistDtos;
     }
 }

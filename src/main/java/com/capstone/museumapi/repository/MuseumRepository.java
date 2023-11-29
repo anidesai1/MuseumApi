@@ -1,6 +1,7 @@
 package com.capstone.museumapi.repository;
 
 import com.capstone.museumapi.dto.MuseumDto;
+import com.capstone.museumapi.model.Exhibition;
 import com.capstone.museumapi.model.Museum;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;

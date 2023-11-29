@@ -19,8 +19,7 @@ public class MuseumDto {
     @JsonIgnore
     private List<Artist> artists;
 
-    public MuseumDto () {
-
+    public MuseumDto() {
     }
 
     public MuseumDto(Integer id, String museumName, String curator, MuseumAddress address) {
