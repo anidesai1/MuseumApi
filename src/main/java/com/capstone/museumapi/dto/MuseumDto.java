@@ -16,7 +16,7 @@ public class MuseumDto {
     private Integer totalNumberOfArtWork;
     private MuseumAddress address;
 
-    @JsonIgnore
+   // @JsonIgnore
     private List<Artist> artists;
 
     public MuseumDto() {
