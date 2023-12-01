@@ -22,7 +22,6 @@ public class ArtistServiceImpl implements ArtistService{
         artistsIts.forEach(artists::add);
         return artists;
     }
-
     @Override
     public List<Artist> findByArtistNameContains(String filter) {
         return artistRepository.findByArtistNameContains(filter);
@@ -31,21 +30,17 @@ public class ArtistServiceImpl implements ArtistService{
     public Artist save(Artist a) {
         return artistRepository.save(a);
     }
-
     @Override
     public void deleteArtist(Integer id) {
         artistRepository.deleteById(id);
     }
-
     @Override
     public Artist findById(int id) {
         Optional<Artist> artist = artistRepository.findById(id);
         return artist.orElseGet(() -> new Artist("Default Message: Nothing found"));
     }
     @Override
-    public Optional<Artist> findArtistById(int id) {
-        return artistRepository.findById(id);
-    }
+    public Optional<Artist> findArtistById(int id) { return artistRepository.findById(id);}
     @Override
     public Artist findByNumberOfWork(int n) {
         Optional<Artist> artist = artistRepository.findArtistByNumberOfWork(n);

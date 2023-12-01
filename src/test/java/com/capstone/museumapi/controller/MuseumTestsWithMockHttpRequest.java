@@ -107,18 +107,11 @@ class MuseumTestsWithMockHttpRequest {
         List<Museum> mockArtists = Arrays.asList(
                 new Museum("Museum1"),
                 new Museum("Museum2")
-                // Add more mock data as needed
         );
-
-        // Set up the mock behavior for your repository method
         when(museumRepository.findByMuseumNameContainingIgnoreCase(eq(filter))).thenReturn(mockArtists);
-
-        // Call the service method
         List<Museum> result = museumService.findByMuseumNameContains(filter);
-
-        // Verify the interactions and assertions
         Mockito.verify(museumRepository, times(1)).findByMuseumNameContainingIgnoreCase(filter);
-        assertThat(result).isNotNull().hasSize(2); // Adjust based on your mock data
+        assertThat(result).isNotNull().hasSize(2);
     }
     @Test
     void testFindMuseumById() throws Exception {

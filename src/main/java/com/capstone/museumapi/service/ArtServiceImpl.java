@@ -32,17 +32,14 @@ public class ArtServiceImpl implements ArtService{
     public List<Art> findByArtNameContains(String filter) {
         return artRepository.findArtByNameContainingIgnoreCase(filter);
     }
-
     @Override
     public Art save(Art a) {
         return artRepository.save(a);
     }
-
     @Override
     public void deleteArt(Integer id) {
         artRepository.deleteById(id);
     }
-
     @Override
     public Art findById(int id) {
         Optional<Art> art = artRepository.findById(id);
@@ -55,7 +52,6 @@ public class ArtServiceImpl implements ArtService{
     @Override
     public List<Painting> getAllPaintings() {
         List<Art> allArtworks = (List<Art>) artRepository.findAll();
-
         return allArtworks.stream()
                 .filter(Painting.class::isInstance)
                 .map(Painting.class::cast)

@@ -5,10 +5,19 @@ import com.capstone.museumapi.model.Museum;
 
 public class MuseumDtoConverter {
     public static MuseumDto convert(Museum museum) {
-        return new MuseumDto(museum.getId(), museum.getMuseumName(), museum.getLocation(), museum.getCurator(), museum.getTotalNumberOfArtWork(), museum.getAddress(), museum.getArtists());
+        return new MuseumDto(museum.getId(),
+                museum.getMuseumName(),
+                museum.getLocation(),
+                museum.getCurator(),
+                museum.getTotalNumberOfArtWork(),
+                museum.getAddress(),
+                museum.getArtists());
 
     }
     public static MuseumDto convertWithLessDetails(Museum museum){
-        return new MuseumDto(museum.getId(), museum.getMuseumName(), museum.getCurator(), museum.getAddress());
+        return new MuseumDto(museum.getId(),
+                museum.getMuseumName(),
+                museum.getCurator(),
+                museum.getAddress());
     }
 }

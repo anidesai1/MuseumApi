@@ -24,28 +24,23 @@ public class MuseumServiceImpl implements MuseumService{
         museumsIts.forEach(museums::add);
         return museums;
     }
-
     @Override
     public List<Museum> findByMuseumNameContains(String filter) {
         return museumRepository.findByMuseumNameContainingIgnoreCase(filter);
     }
-
     @Override
     public Museum save(Museum m) {
         return museumRepository.save(m);
     }
-
     @Override
     public void deleteMuseum(Integer id) {
         museumRepository.deleteById(id);
     }
-
     @Override
     public Museum findById(int id) {
         Optional<Museum> museum = museumRepository.findById(id);
         return museum.orElseGet(() -> new Museum("Default Message: Nothing found"));
     }
-
     @Override
     public List<MuseumDto> findAllMuseumDto() {
         return museumRepository.findAllMuseumDto();

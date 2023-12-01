@@ -52,7 +52,8 @@ public class MuseumController {
     @DeleteMapping("/museum/{id}")
     public ResponseEntity<String> deleteMessage(@PathVariable Integer id) {
         museumService.deleteMuseum(id);
-        return new ResponseEntity<>("Museum deleted successfully", HttpStatus.OK);
+        return new ResponseEntity<>
+                ("Museum deleted successfully", HttpStatus.OK);
     }
     @GetMapping("/museums/{id}")
     public List<MuseumDto> getMuseumById(@PathVariable int id) {

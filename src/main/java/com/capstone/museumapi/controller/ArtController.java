@@ -19,7 +19,6 @@ import java.util.List;
 public class ArtController {
     ArtService artService;
     ArtistService artistService;
-
     public ArtController(ArtService artService, ArtistService artistService) {
         this.artService = artService;
         this.artistService = artistService;
